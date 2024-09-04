@@ -17,7 +17,7 @@ setup(
     description='A simple Python wrapper for the Deezer API',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/Andryerics/deezer_api',
+    url='https://github.com/Andryerics/all_scraper',
     author='Andry RL',
     author_email='andryerics@gmail.com',
     license='MIT',
