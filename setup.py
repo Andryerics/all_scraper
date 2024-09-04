@@ -14,7 +14,7 @@ setup(
         'requests',
     ],
     include_package_data=True,
-    description='A simple Python wrapper for the Deezer API',
+    description='Scrape all social network such as : LinkedIn, Tiktok, Instagram.....',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/Andryerics/all_scraper',
