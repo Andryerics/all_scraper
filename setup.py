@@ -21,6 +21,7 @@ setup(
     author='Andry RL',
     author_email='andryerics@gmail.com',
     license='MIT',
+    keywords = ['Scraping', 'Scraper', 'linkedin','instagram','tiktok'],
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
