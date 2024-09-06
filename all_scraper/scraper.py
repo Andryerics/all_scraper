@@ -5,15 +5,6 @@ from .exception import APITimeoutException, APIHTTPErrorException, GeneralAPIExc
 class Scraper:
     def api_request(self, base_url, endpoint, params=None, headers=None, timeout=10):
         """
-        Fonction générique pour effectuer des requêtes API, gérer les exceptions et les logs.
-
-        Args:
-        - base_url: L'URL de base (par exemple, TikTok, Douyin, Bilibili ou Betabotz).
-        - endpoint: Le chemin de l'API à appeler (ajouté à base_url).
-        - params: Les paramètres de la requête.
-        - headers: Les en-têtes HTTP, optionnels.
-        - timeout: Temps d'attente maximal pour la requête.
-
         Returns:
         - Le contenu JSON de la réponse en cas de succès, ou un message d'erreur détaillé.
         """
@@ -32,35 +23,48 @@ class Scraper:
         except requests.exceptions.RequestException as err:
             raise GeneralAPIException(f"Erreur : {err}")
 
-    # Fonctions spécifiques aux API TikTok
+
+
+
+######################
+####### TIKTOK ########
+
+    # Fetch post comment TikTok
     def fetch_post_comment(self, aweme_id, cursor=100, count=20):
         """
         Récupère les commentaires d'un post TikTok.
         """
         params = {'aweme_id': aweme_id, 'cursor': cursor, 'count': count}
         return self.api_request(BASE_URL_TIKTOK, "fetch_post_comment", params=params, headers=HEADERS)
-
+        
+        # Fetch user profile TikTok
     def fetch_user_profile(self, unique_id):
         """
         Récupère le profil utilisateur TikTok en fonction de l'identifiant unique.
         """
         params = {'uniqueId': unique_id}
         return self.api_request(BASE_URL_TIKTOK, "fetch_user_profile", params=params, headers=HEADERS)
-
+        
+        
+    # Fetch post comment Reply TikTok
     def fetch_post_comment_reply(self, item_id, comment_id, cursor=0, count=20):
         """
         Récupère les réponses à un commentaire sur un post TikTok.
         """
         params = {'item_id': item_id, 'comment_id': comment_id, 'cursor': cursor, 'count': count}
         return self.api_request(BASE_URL_TIKTOK, "fetch_post_comment_reply", params=params, headers=HEADERS)
-
+        
+        
+    # Get user Sec ID TikTok
     def get_sec_user_id(self, url_encoded):
         """
         Récupère le sec_user_id depuis une URL TikTok encodée.
         """
         params = {'url': url_encoded}
         return self.api_request(BASE_URL_TIKTOK, "get_sec_user_id", params=params, headers=HEADERS)
-
+        
+        
+    # Get aweme id TikTok
     def get_aweme_id(self, url_encoded):
         """
         Récupère l'aweme_id (ID de la vidéo) depuis une URL TikTok encodée.
@@ -68,13 +72,17 @@ class Scraper:
         params = {'url': url_encoded}
         return self.api_request(BASE_URL_TIKTOK, "get_aweme_id", params=params, headers=HEADERS)
 
+
+    # Get unique id TikTok
     def get_unique_id(self, url_encoded):
         """
         Récupère l'unique_id (ID de l'utilisateur) depuis une URL TikTok encodée.
         """
         params = {'url': url_encoded}
         return self.api_request(BASE_URL_TIKTOK, "get_unique_id", params=params, headers=HEADERS)
-
+        
+        
+    # Fetch user Follow TikTok
     def fetch_user_follow(self, sec_uid, count=10, max_cursor=0, min_cursor=0):
         """
         Récupère la liste des followers d'un utilisateur TikTok.
@@ -86,6 +94,11 @@ class Scraper:
             'minCursor': min_cursor
         }
         return self.api_request(BASE_URL_TIKTOK, "fetch_user_follow", params=params, headers=HEADERS)
+
+
+###### FIN TIKTOK ######
+######################
+
 
     # Fonctions spécifiques pour les API Betabotz (TikTok Downloader, Instagram Stalker, Xvideos Downloader et Recherche)
     def download_tiktok_video(self, url):
@@ -131,13 +144,20 @@ class Scraper:
         params = {'bv_id': bv_id, 'pn': pn, 'rpid': rpid}
         return self.api_request(BASE_URL_BILIBILI, "fetch_comment_reply", params=params)
 
+
+
+
+#######################
+###### DOUYAN #########
+
     # Fonctions spécifiques à l'API Douyin
     def fetch_user_profile_douyin(self, sec_user_id):
         """
         Récupère le profil utilisateur Douyin en fonction du sec_user_id.
         """
         params = {'sec_user_id': sec_user_id}
-        return self.api_request(BASE_URL_DOUYIN, "fetch_user_profile", params=params, headers=HEADERS)
+        return self.api_request(BASE_URL_DOUYIN, "handler_user_profile", params=params, headers=HEADERS)
+        
 
     def fetch_user_post_videos(self, sec_user_id):
         """
@@ -160,6 +180,13 @@ class Scraper:
         params = {'item_id': item_id, 'comment_id': comment_id, 'cursor': cursor, 'count': count}
         return self.api_request(BASE_URL_DOUYIN, "fetch_video_comment_replies", params=params, headers=HEADERS)
 
+    def get_user_live_videos_douyin(self, url_encoded):
+        """
+        Récupère les vidéos en direct depuis une webcast_id Douyin.
+        """
+        params = {'webcast_id': url_encoded}
+        return self.api_request(BASE_URL_DOUYIN, "fetch_user_live_videos", params=params, headers=HEADERS)
+
     def get_aweme_id_douyin(self, url_encoded):
         """
         Récupère l'aweme_id (ID de la vidéo) depuis une URL Douyin encodée.
@@ -167,3 +194,19 @@ class Scraper:
         params = {'url': url_encoded}
         return self.api_request(BASE_URL_DOUYIN, "get_aweme_id", params=params, headers=HEADERS)
         
+    def get_sec_user_id_douyin(self, url_encoded):
+        """
+        Récupère sec_user_id / SecUid (ID de la vidéo) depuis une URL Douyin encodée.
+        """
+        params = {'url': url_encoded}
+        return self.api_request(BASE_URL_DOUYIN, "get_sec_user_id", params=params, headers=HEADERS)
+        
+    def get_webcast_id_douyin(self, url_encoded):
+        """
+        Récupère webcast_id depuis une URL Douyin encodée.
+        """
+        params = {'url': url_encoded}
+        return self.api_request(BASE_URL_DOUYIN, "get_webcast_id", params=params, headers=HEADERS)
+        
+###### FIN DOUYAN #######
+#######################
