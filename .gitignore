@@ -1,0 +1,12 @@
+.vscode
+.pytest_cache
+build
+dist
+all_scraper.egg-info
+**/__pycache__/*
+*.pyc
+**/*.pyc
+**/all_scraper/*.pyc
+venv
+output
+.idea
