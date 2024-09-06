@@ -383,21 +383,18 @@ USER_AGENTS = [
 
 # En-têtes HTTP pour imiter un navigateur réel
 HEADERS = {
-    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    #"accept-encoding": "gzip, deflate, br, zstd",
-    "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-    "cache-control": "max-age=0",
-    "priority": "u=0, i",
-    "referer": "https://www.google.com/",
-    "sec-ch-ua": "'Not A;Brand ';v='99', 'Google Chrome';v='127', 'Chromium';v='127'",
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "Windows",
-    "sec-fetch-dest": "document",
-    "sec-fetch-mode": "navigate",
-    "sec-fetch-site": "cross-site",
-    "sec-fetch-user": "?1",
-    "upgrade-insecure-requests": "1",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
+    #"Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "DNT": "1",
+    "Referer": "https://www.google.com/",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
 }
 
 def get_random_user_agent():
